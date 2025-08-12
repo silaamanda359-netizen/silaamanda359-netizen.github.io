@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Toko Crepes - Aneka Kue</title>
+  <style>
+    /* Reset dan font */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #fff8f0; /* cream putih */
+      color: #4a3c3c;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+    header {
+      margin-bottom: 40px;
+      text-align: center;
+    }
+    header h1 {
+      font-size: 2.8rem;
+      color: #d66a86; /* pink cerah */
+      letter-spacing: 3px;
+      margin-bottom: 10px;
+    }
+    header p {
+      font-size: 1.1rem;
+      color: #6a5d5d;
+      font-weight: 500;
+    }
+
+    /* Grid tampilan kue */
+    .cake-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 30px;
+      width: 100%;
+      max-width: 1100px;
+    }
+
+    /* Card kue */
+    .cake-card {
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(214, 106, 134, 0.2);
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+    }
+    .cake-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 12px 28px rgba(214, 106, 134, 0.35);
+    }
+
+    /* Gambar kue */
+    .cake-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .cake-card:hover img {
+      transform: scale(1.05);
+    }
+
+    /* Informasi kue */
+    .cake-info {
+      padding: 15px 20px;
+      text-align: center;
+    }
+    .cake-info h3 {
+      color: #d66a86;
+      font-size: 1.4rem;
+      margin-bottom: 8px;
+    }
+    .cake-info p {
+      color: #6a5d5d;
+      font-size: 1rem;
+      margin-bottom: 15px;
+      height: 45px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Tombol beli */
+    .btn-buy {
+      background: #f6b2c1;
+      color: #fff;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: background-color 0.3s ease;
+      cursor: pointer;
+      outline: none;
+    }
+    .btn-buy:hover {
+      background: #d66a86;
+    }
+
+    /* Animasi masuk */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      animation-fill-mode: forwards;
+      animation-name: fadeInUp;
+      animation-duration: 0.7s;
+      animation-timing-function: ease-out;
+    }
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 480px) {
+      header h1 {
+        font-size: 2rem;
+      }
+      .cake-info p {
+        height: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Toko Crepes</h1>
+  <p>Aneka Kue dan Crepes Lezat untuk Anda</p>
+</header>
+
+<section class="cake-grid" id="cakeGrid">
+  <!-- Kue akan muncul di sini via JavaScript -->
+</section>
+
+<script>
+  // Data kue - bisa kamu ganti dan tambah
+  const cakes = [
+    {
+      name: "Crepes Strawberry Cream",
+      desc: "Crepes tipis dengan isi krim lembut dan potongan strawberry segar.",
+      img: "https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=600&q=80",
+      price: 25000
+    },
+    {
+      name: "Chocolate Fudge Cake",
+      desc: "Cake cokelat lembut dengan lapisan fudge pekat yang menggoda.",
+      img: "https://images.unsplash.com/photo-1599789197514-9a8336f34e1b?auto=format&fit=crop&w=600&q=80",
+      price: 40000
+    },
+    {
+      name: "Vanilla Blueberry Pancake",
+      desc: "Pancake empuk dengan taburan blueberry segar dan saus vanilla.",
+      img: "https://images.unsplash.com/photo-1505253210343-2ec51c05892e?auto=format&fit=crop&w=600&q=80",
+      price: 28000
+    },
+    {
+      name: "Matcha Roll Cake",
+      desc: "Roll cake lembut dengan krim matcha khas Jepang yang menenangkan.",
+      img: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=600&q=80",
+      price: 35000
+    },
+    {
+      name: "Banana Nut Crepes",
+      desc: "Crepes tipis dengan isian pisang manis dan taburan kacang renyah.",
+      img: "https://images.unsplash.com/photo-1516684669134-9f79a0c2e6f9?auto=format&fit=crop&w=600&q=80",
+      price: 27000
+    },
+    {
+      name: "Red Velvet Cake",
+      desc: "Cake merah cantik dengan krim keju lembut dan rasa khas manis.",
+      img: "https://images.unsplash.com/photo-1606755962773-11a012899c72?auto=format&fit=crop&w=600&q=80",
+      price: 45000
+    }
+  ];
+
+  const cakeGrid = document.getElementById('cakeGrid');
+
+  cakes.forEach((cake, i) => {
+    const card = document.createElement('div');
+    card.className = 'cake-card fade-in';
+    card.style.animationDelay = `${i * 0.15}s`;
+
+    card.innerHTML = `
+      <img src="${cake.img}" alt="${cake.name}" />
+      <div class="cake-info">
+        <h3>${cake.name}</h3>
+        <p>${cake.desc}</p>
+        <button class="btn-buy" onclick="buyCake('${cake.name}', ${cake.price})">Beli - Rp ${cake.price.toLocaleString('id-ID')}</button>
+      </div>
+    `;
+
+    cakeGrid.appendChild(card);
+  });
+
+  function buyCake(name, price) {
+    alert(`Terima kasih sudah membeli ${name} seharga Rp ${price.toLocaleString('id-ID')}`);
+  }
+</script>
+
+</body>
+</html>
