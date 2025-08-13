@@ -1,18 +1,22 @@
-// Menunggu sampai halaman selesai dimuat
-document.addEventListener("DOMContentLoaded", function () {
+let slideIndex = 0;
+const slides = document.querySelector(".slides");
+const totalSlides = slides.children.length;
 
-    // Ambil tombol dan gambar dari HTML
-    const tombol = document.getElementById("tombolPromo");
-    const gambar = document.getElementById("gambarCrepes");
-
-    // Event kalau tombol diklik
-    tombol.addEventListener("click", function () {
-        alert("Promo spesial! Beli 2 gratis 1 🍓");
-    });
-
-    // Efek klik pada gambar
-    gambar.addEventListener("click", function () {
-        gambar.src = "crepes2.jpg"; // ganti ke gambar lain
-    });
-
+document.querySelector(".next").addEventListener("click", () => {
+    slideIndex = (slideIndex + 1) % totalSlides;
+    updateSlide();
 });
+
+document.querySelector(".prev").addEventListener("click", () => {
+    slideIndex = (slideIndex - 1 + totalSlides) % totalSlides;
+    updateSlide();
+});
+
+function updateSlide() {
+    slides.style.transform = `translateX(-${slideIndex * 100}%)`;
+}
+
+setInterval(() => {
+    slideIndex = (slideIndex + 1) % totalSlides;
+    updateSlide();
+}, 4000);
