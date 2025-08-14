@@ -1,88 +1,57 @@
-body {
-    font-family: 'Poppins', sans-serif;
-    background-color: #fffaf7;
+/* Reset bawaan browser */
+* {
     margin: 0;
-    color: #444;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Warna dan font dasar */
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #fff8f0;
+    color: #333;
     text-align: center;
-}
-
-header {
-    background-color: #f8d9e0;
     padding: 20px;
-    border-bottom: 5px solid #b0e0f0;
 }
 
+/* Judul utama */
 h1 {
-    color: #6b5b95;
-    margin-bottom: 5px;
+    color: #d16b86;
+    margin-bottom: 10px;
+    font-size: 2.5rem;
 }
 
-.slider {
-    position: relative;
-    max-width: 700px;
-    margin: 30px auto;
-    overflow: hidden;
-    border-radius: 20px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-}
-
-.slides {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
-}
-
-.slides img {
-    width: 100%;
-}
-
-button.prev, button.next {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(255,255,255,0.7);
-    border: none;
-    font-size: 24px;
-    padding: 10px;
-    cursor: pointer;
-    border-radius: 50%;
-}
-
-button.prev { left: 15px; }
-button.next { right: 15px; }
-
-.menu {
-    padding: 30px;
-    background-color: #e8f7f7;
-}
-
-.menu h2 {
-    color: #6b5b95;
+/* Deskripsi */
+p {
+    font-size: 1.1rem;
     margin-bottom: 20px;
+    color: #555;
 }
 
-.menu-grid {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-.menu-item {
-    background-color: #fff;
+/* Gambar crepes */
+img {
+    width: 300px;
     border-radius: 15px;
-    width: 250px;
-    padding: 15px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
 }
 
-.menu-item img {
-    width: 100%;
-    border-radius: 10px;
+img:hover {
+    transform: scale(1.05);
 }
 
-.price {
-    display: block;
-    margin-top: 10px;
-    font-weight: bold;
-    color: #ff6f91;
+/* Tombol */
+button {
+    background-color: #ffb6c1;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #d16b86;
 }
